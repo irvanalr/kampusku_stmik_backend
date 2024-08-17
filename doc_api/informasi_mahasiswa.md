@@ -3,7 +3,7 @@
 ## Get Data Mahasiswa
 
 **Base URL**: `http://localhost:3000`  
-**Endpoint**: `/sessions/get-mahasiswa`  
+**Endpoint**: `/sessions/get-mahasiswa/nama`  
 **Method**: `GET`  
 **Description**: Endpoint ini digunakan untuk mendapatkan data mahasiswa per 1 data. Token JWT diperlukan untuk autentikasi dan beberapa validasi input diterapkan.
 
@@ -25,7 +25,7 @@ Authorization : token-login
       "status": 1,
       "message": "Berhasil Mendapatkan data mahasiswa !!!",
       "data": [
-        // Array of mahasiswa objects
+        // data mahasiswa
       ]
     }
     ```

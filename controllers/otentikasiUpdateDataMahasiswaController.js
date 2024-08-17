@@ -10,7 +10,7 @@ const updateDataMahasiswa = (req, res) => {
     const namaParameter = req.params.nama;
 
     // ambil reques dari client
-    const {nama, nomor_telephone, tanggal_lahir, jenis_kelamin, alamat, npm} = req.body;
+    const {nama, nomor_telephone: nomer_handphone, tanggal_lahir, jenis_kelamin, alamat, npm} = req.body;
 
     // Regular expression untuk mendeteksi backtick dan tanda dollar
     const forbiddenChars = /[`$]/;
@@ -32,17 +32,17 @@ const updateDataMahasiswa = (req, res) => {
         return res.status(400).json({
             timestamp: new Date().toISOString(),
             status: 0,
-            message: "Nama tidak boleh berisikan kurang dari 3 kata",
+            message: "Nama tidak boleh berisikan kurang dari 3 kata !!!",
         });
     }
 
     // Validasi nomor_telephone
-    if (validateInput(nomor_telephone, 'Nomer Telephone')) return;
-    if (nomor_telephone.length < 12) {
+    if (validateInput(nomer_handphone, 'Nomer Handphone')) return;
+    if (nomer_handphone.length < 12) {
         return res.status(400).json({
             timestamp: new Date().toISOString(),
             status: 0,
-            message: "Nomer Telephone minimal harus terdiri dari 12 angka!",
+            message: "Nomer Handphone minimal harus terdiri dari 12 angka !!!",
         });
     }
 
@@ -53,7 +53,7 @@ const updateDataMahasiswa = (req, res) => {
         return res.status(400).json({
             timestamp: new Date().toISOString(),
             status: 0,
-            message: "Format tanggal_lahir harus tahun-bulan-tanggal (YYYY-MM-DD)",
+            message: "Format Tanggal Lahir harus tahun-bulan-tanggal !!!",
         });
     }
 
@@ -63,7 +63,7 @@ const updateDataMahasiswa = (req, res) => {
         return res.status(400).json({
             timestamp: new Date().toISOString(),
             status: 0,
-            message: "Jenis kelamin di tolak, Masukan kata 'Laki-laki' atau 'Perempuan' !!!",
+            message: "Jenis Kelamin di tolak, Masukan kata 'Laki-laki' atau 'Perempuan' !!!",
         });
     }
 
@@ -79,7 +79,7 @@ const updateDataMahasiswa = (req, res) => {
 
     // Validasi npm
     if (validateInput(npm, 'NPM')) return;
-    if (npm.length <= 8) {
+    if (npm.length < 8) {
         return res.status(400).json({
             timestamp: new Date().toISOString(),
             status: 0,
@@ -180,7 +180,7 @@ const updateDataMahasiswa = (req, res) => {
                     });
                 }
 
-                otentikasiUpdateDataMahasiswaModel.updateDataMahasiswa(nama, nomor_telephone, tanggal_lahir, jenis_kelamin, alamat, npm, dosen.id, namaParameter, (err, responseUpdateTableMahasiswa) => {
+                otentikasiUpdateDataMahasiswaModel.updateDataMahasiswa(nama, nomer_handphone, tanggal_lahir, jenis_kelamin, alamat, npm, dosen.id, namaParameter, (err, responseUpdateTableMahasiswa) => {
                     // error saat query database mahasiswa
                     if (err) {
                         console.error("Error querying mahasiswa table:", err);

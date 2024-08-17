@@ -9,6 +9,6 @@ router.use(checkUserAgent);
 router.use(checkHeaders2);
 
 // Endpoint
-router.get('/sessions/get-mahasiswa', otentikasiGetDataMahasiswaController.getDataMahasiswa);
+router.get('/sessions/get-mahasiswa/:nama', otentikasiGetDataMahasiswaController.getDataMahasiswa);
 
 module.exports = router;

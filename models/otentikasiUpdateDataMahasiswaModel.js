@@ -33,10 +33,10 @@ const getAllTableMahasiswa = (nama, callback) => {
       });
 }
 
-const updateDataMahasiswa = (nama, nomor_telephone, tanggal_lahir, jenis_kelamin, alamat, npm, dosen_id, nama2, callback) => {
-    const query = 'UPDATE mahasiswa SET nama = ?, nomor_telephone = ?, tanggal_lahir = ?, jenis_kelamin = ?, alamat = ?, npm = ? where dosen_id = ? AND nama = ?';
+const updateDataMahasiswa = (nama, nomer_handphone, tanggal_lahir, jenis_kelamin, alamat, npm, dosen_id, nama2, callback) => {
+    const query = 'UPDATE mahasiswa SET nama = ?, nomer_handphone = ?, tanggal_lahir = ?, jenis_kelamin = ?, alamat = ?, npm = ? where dosen_id = ? AND nama = ?';
 
-    connection.query(query, [nama, nomor_telephone, tanggal_lahir, jenis_kelamin, alamat, npm, dosen_id, nama2], (error, results) => {
+    connection.query(query, [nama, nomer_handphone, tanggal_lahir, jenis_kelamin, alamat, npm, dosen_id, nama2], (error, results) => {
         if (error) {
             return callback(error, null);
         }

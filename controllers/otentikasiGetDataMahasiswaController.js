@@ -6,6 +6,9 @@ const getDataMahasiswa = (req, res) => {
     // cek headers
     const authHeader = req.get('Authorization');
 
+    // cek parameter
+    const namaParameter = req.params.nama;
+
     // jika authorization kosong
     if(!authHeader) {
         // status 401 unauthorize
@@ -13,6 +16,16 @@ const getDataMahasiswa = (req, res) => {
         timestamp: new Date().toISOString(),
         status: 0,
         message: "Authorization kosong, silahkan masukan input Authorization !!!",
+        });
+    }
+
+    // jika parameter kosong
+    if(!namaParameter) {
+        // status 401 unauthorize
+        return res.status(404).json({
+        timestamp: new Date().toISOString(),
+        status: 0,
+        message: "Data id kosong, silahkan masukan input id di akhir endpoint !!!",
         });
     }
 
@@ -76,7 +89,26 @@ const getDataMahasiswa = (req, res) => {
                     message: "SERVER MENGALAMI GANGGUAN, SILAHKAN COBA LAGI NANTI !!!",
                     });
                 }
-                // console.log(responseGetAllTableMahasiswa);
+                
+                const mahasiswa = responseGetAllTableMahasiswa.find(nama => nama.nama == namaParameter);
+
+                if(!mahasiswa) {
+                    // status 404 not found
+                    return res.status(404).json({
+                        timestamp: new Date().toISOString(),
+                        status: 0,
+                        message: "Data mahasiswa tidak di temukan !!!",
+                    });
+                }
+
+                responseData = {
+                    nama: mahasiswa.nama,
+                    nomer_handphone: mahasiswa.nomer_handphone,
+                    tanggal_lahir: mahasiswa.tanggal_lahir.toISOString().split('T')[0],
+                    jenis_kelamin: mahasiswa.jenis_kelamin,
+                    alamat: mahasiswa.alamat,
+                    npm: mahasiswa.npm
+                };
                 
                 // response berhasil
                 res.status(200).json(
@@ -84,7 +116,7 @@ const getDataMahasiswa = (req, res) => {
                         timestamp: new Date().toISOString(),
                         status: 1,
                         message: "Berhasil Mendapatkan data mahasiswa !!!",
-                        data: responseGetAllTableMahasiswa
+                        data: responseData
                     }
                 );
             })

@@ -22,10 +22,10 @@ const getAllTableMahasiswa = (callback) => {
     });
 }
 
-const insertDataMahasiswa = (dosen_id, nama, tanggal_lahir, jenis_kelamin, alamat, npm, tanggal_dibuat, callback) => {
-  const query = 'INSERT INTO mahasiswa (dosen_id, nama, tanggal_lahir, jenis_kelamin, alamat, npm, tanggal_dibuat) VALUES (?, ?, ?, ?, ?, ?, ?)';
+const insertDataMahasiswa = (dosen_id, nama, nomer_handphone, tanggal_lahir, jenis_kelamin, alamat, npm, tanggal_dibuat, callback) => {
+  const query = 'INSERT INTO mahasiswa (dosen_id, nama, nomer_handphone, tanggal_lahir, jenis_kelamin, alamat, npm, tanggal_dibuat) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 
-  connection.query(query, [dosen_id, nama, tanggal_lahir, jenis_kelamin, alamat, npm, tanggal_dibuat], (error, results) => {
+  connection.query(query, [dosen_id, nama, nomer_handphone, tanggal_lahir, jenis_kelamin, alamat, npm, tanggal_dibuat], (error, results) => {
       if (error) {
         return callback(error, null);
       }

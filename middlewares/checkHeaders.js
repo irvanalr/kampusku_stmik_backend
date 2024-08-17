@@ -8,7 +8,7 @@ const checkHeaders1 = (req, res, next) => {
     !mobileAppHeader || 
     !contentTypeHeader || 
     !acceptHeader || 
-    contentTypeHeader !== 'application/json' || 
+    !contentTypeHeader.startsWith('application/json')  || 
     acceptHeader !== 'application/json' || 
     mobileAppHeader !== 'mobile-application'
   ) {
@@ -33,7 +33,7 @@ const checkHeaders2 = (req, res, next) => {
     !contentTypeHeader || 
     !acceptHeader || 
     !authorizationHeader ||
-    contentTypeHeader !== 'application/json' || 
+    !contentTypeHeader.startsWith('application/json') || 
     acceptHeader !== 'application/json' || 
     mobileAppHeader !== 'mobile-application'
   ) {
